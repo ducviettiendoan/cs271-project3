@@ -8,8 +8,12 @@ class Element{
         int key;
         T val;
     public:    
-        // Element();
+        // Element();        
+        Element<T>* next;
+        Element<T>* prev;
         Element(int, T);
+        //create Destructor!!!
+        ~Element();
         int get_key();
         T get_value();
 };
