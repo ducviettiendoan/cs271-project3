@@ -18,14 +18,17 @@ class Element{
         T get_value();
 };
 
-// template<typename T>
-// Element<T>::Element(){
-
-// }
 template<typename T>
 Element<T>::Element(int k, T value){
     key = k;
     val = value;
+}
+template<typename T>
+Element<T>::~Element(){
+    cout<<"Delete element with "<<"Key: "<<key<<" and Value: "<<val<<endl;
+    next = nullptr;
+    prev = nullptr;
+    key = -1;
 }
 
 template<typename T>
@@ -37,3 +40,5 @@ template<typename T>
 T Element<T>::get_value(){
     return val;
 }
+
+

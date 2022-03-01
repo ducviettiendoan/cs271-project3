@@ -7,9 +7,12 @@ template<typename T>
 class DoublyLinkedList{
     public:
         Element<T>* head;
+        Element<T>* tail;
         DoublyLinkedList();
         DoublyLinkedList(Element<T>*);
         void addElement(Element<T>*);
+        Element<T>* searchElement(int key);
+        void deleteElement(Element<T>*);
         void traverse();
 };
 
@@ -27,6 +30,7 @@ template<typename T>
 void DoublyLinkedList<T>::addElement(Element<T> *newElement){
     if (!head){
         head = newElement;
+        tail = newElement;
         return;
     }
     newElement -> next = head;
@@ -42,6 +46,43 @@ void DoublyLinkedList<T>::traverse(){
         curr = curr -> next;
     }
 }
+
+template<typename T>
+Element<T>* DoublyLinkedList<T>::searchElement(int key){
+    Element<T>* curr = head;
+    while(curr){
+        if (curr -> get_key() == key){
+            break;
+        }
+        curr = curr -> next;
+    }
+    return curr;
+}
+
+template<typename T>
+void DoublyLinkedList<T>::deleteElement(Element<T>* target){
+    Element<T>* curr = head;
+    while(curr){
+        if (curr == target){
+            if (curr == head){
+                (curr -> next)->prev = nullptr;
+                head = curr -> next;
+            }
+            else if (tail == target){
+                (curr -> prev) -> next = nullptr;
+                curr -> prev = tail;
+            }
+            else{
+                (curr -> prev) -> next = curr -> next;
+                (curr -> next) -> prev = curr -> prev;
+            }
+            break;
+        }
+        curr = curr -> next;
+    }
+    delete curr;
+}
+
 //Build a HashMap
 template<typename T>
 class HashTable{
@@ -53,7 +94,7 @@ class HashTable{
         int hashFunction(int);
         void insertItem(Element<T>*);
         void deleteItem(Element<T>*);
-        void searchItem(int key);
+        T searchItem(int key);
         void printHashMap();
 };
 
@@ -83,3 +124,17 @@ void HashTable<T>::printHashMap(){
         (arr[i]).traverse();
     }
 }
+
+template<typename T>
+T HashTable<T>::searchItem(int key){
+    int hashKey = hashFunction(key);    
+    Element<T>* returnElement = arr[hashKey].searchElement(key);
+    cout<<"Key: "<<returnElement->get_key()<<" "<<"Value: "<<returnElement->get_value()<<endl;
+    return returnElement->get_value();
+}
+
+template<typename T>
+void HashTable<T>::deleteItem(Element<T>* toBeDelete){
+    int hashKey = hashFunction(toBeDelete->get_key());
+    arr[hashKey].deleteElement(toBeDelete);
+}   

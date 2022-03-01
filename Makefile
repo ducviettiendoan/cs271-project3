@@ -8,7 +8,7 @@ all: test_hashtable
 test_hashtable: test_hashtable.o
 	g++ test_hashtable.o -o test_hashtable
 
-test_hashtable.o: test_hashtable.cpp hashtable.cpp
+test_hashtable.o: test_hashtable.cpp hashtable.cpp element.cpp
 	g++ -c test_hashtable.cpp
 
 hashtable: hashtable.o 
