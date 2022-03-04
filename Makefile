@@ -3,7 +3,13 @@
 # target: dependencies
 # 	action
 
-all: test_hashtable
+all: main test_hashtable
+
+main: main.o
+	g++ main.o -o main
+
+main.o: main.cpp hashtable.cpp element.cpp utility.cpp
+	g++ -c main.cpp
 
 test_hashtable: test_hashtable.o
 	g++ test_hashtable.o -o test_hashtable
@@ -21,5 +27,5 @@ element.o: element.cpp
 	g++ -c element.cpp 
 
 clean:
-	rm -f *.o test_hashtable
+	rm -f *.o test_hashtable main
 

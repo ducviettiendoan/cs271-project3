@@ -10,17 +10,17 @@ int main(){
     Element<double>* e4 = new Element<double>(6,11.9);
     Element<double>* e5 = new Element<double>(7,34.1);
     Element<double>* e6 = new Element<double>(11,99.2);
-    //create HashTable size 5
-    HashTable<double> hashmap = HashTable<double>(5);
-    hashmap.insertItem(e1);
-    hashmap.insertItem(e2);
-    hashmap.insertItem(e3);
-    hashmap.insertItem(e4);
-    hashmap.insertItem(e5);
-    hashmap.insertItem(e6);
-    hashmap.printHashMap();
-    // cout<<hashmap.searchItem(7)<<endl;
-    hashmap.deleteItem(e4);
-    hashmap.printHashMap();
+    //create HashTable size 6
+    HashTable<double> hashmapTest = HashTable<double>(12);
+    hashmapTest.insertItem(e1);
+    hashmapTest.insertItem(e2);
+    hashmapTest.insertItem(e3);
+    hashmapTest.insertItem(e4);
+    hashmapTest.insertItem(e5);
+    hashmapTest.insertItem(e6);
+    hashmapTest.printHashMap();
+    // cout<<hashmapTest.searchItem(7)<<endl;
+    // hashmapTest.deleteItem(e4);
+    // hashmapTest.printHashMap();
     return 0;
 }

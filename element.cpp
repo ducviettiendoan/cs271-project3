@@ -5,34 +5,33 @@ using namespace std;
 template<typename T>
 class Element{
     private: 
-        int key;
+        long long key;
         T val;
     public:    
         // Element();        
         Element<T>* next;
         Element<T>* prev;
-        Element(int, T);
+        Element(long long, T);  //change to int later plxx
         //create Destructor!!!
         ~Element();
-        int get_key();
+        long long get_key();
         T get_value();
 };
 
 template<typename T>
-Element<T>::Element(int k, T value){
+Element<T>::Element(long long k, T value){  //change k to int later
     key = k;
     val = value;
 }
 template<typename T>
 Element<T>::~Element(){
-    cout<<"Delete element with "<<"Key: "<<key<<" and Value: "<<val<<endl;
     next = nullptr;
     prev = nullptr;
     key = -1;
 }
 
 template<typename T>
-int Element<T>::get_key(){
+long long Element<T>::get_key(){
     return key;
 }
 
