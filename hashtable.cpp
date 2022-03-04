@@ -137,45 +137,40 @@ HashTable<T>::HashTable(int s)
     arr = new DoublyLinkedList<T>[s];
 }
 
-// template<typename T>
-// int HashTable<T>::hashFunction(long long key){
-//     // cout<<"Key: "<<typeid(key).name()<<key<<" size: "<<typeid(size).name()<<" Remainder: "<<key%size<<endl;
-//     long long sizeLong = (long long)size;
-//     int hashKey = int(key%sizeLong);
+// Most significant bits
+// template <typename T>
+// int HashTable<T>::hashFunction(long long key)
+// {
+//     //this p will determine the number of most significant bits we need.
+//     int p = findClosestPow2(size);
+//     int hashKey;
+//     vector<int> binary = decToBinary(key);
+//     vector<int> pMostSignificantBits;
+//     for (int i = 0; i < p; i++)
+//     {
+//         if (i<binary.size()){
+//             pMostSignificantBits.push_back(binary[i]);
+//         }
+//         else{
+//             pMostSignificantBits.insert(pMostSignificantBits.begin(),0);
+//         }
+//     }
+
+//     hashKey = binaryToDec(pMostSignificantBits);
 //     return hashKey;
 // }
-
-// Most significant bits
-template <typename T>
-int HashTable<T>::hashFunction(long long key)
-{
-    int hashKey;
-    vector<int> binary = decToBinary(key);
-    vector<int> pMostSignificantBits;
-    for (int i = 0; i < 6; i++)
-    {
-        if (i<binary.size()){
-            pMostSignificantBits.push_back(binary[i]);
-        }
-        else{
-            pMostSignificantBits.insert(pMostSignificantBits.begin(),0);
-        }
-    }
-
-    hashKey = binaryToDec(pMostSignificantBits);
-    return hashKey;
-}
 
 // Cormen Method
-// template<typename T>
-// int HashTable<T>::hashFunction(long long key){
-//     double A = (pow(5,0.5)-1)/2;
-//     double x = A*key;
-//     double fractionX = x - (long long)x;
-//     // cout<<"fraction: "<<fractionX<<endl;
-//     int hashKey = (int)(fractionX*pow(2,6));  //since 64 is the nearest power of 2 that < 100 (size of csv)
-//     return hashKey;
-// }
+template<typename T>
+int HashTable<T>::hashFunction(long long key){
+    //p is the number we choose based on the size of the hashtable to get the hashKey pow(2,p)
+    int p = findClosestPow2(size);
+    double A = (pow(5,0.5)-1)/2;
+    double x = A*key;
+    double fractionX = x - (long long)x;
+    int hashKey = (int)(fractionX*pow(2,p));  //since 64 is the nearest power of 2 that < 100 (size of csv)
+    return hashKey;
+}
 
 //
 
@@ -198,10 +193,9 @@ void HashTable<T>::printHashMap()
 
 template <typename T>
 Element<T> *HashTable<T>::searchItem(long long key)
-{ // could change back to int later
+{
     int hashKey = hashFunction(key);
     Element<T> *returnElement = arr[hashKey].searchElement(key);
-    // cout<<"Key: "<<returnElement->get_key()<<" "<<"Value: "<<returnElement->get_value()<<endl;
     if (returnElement)
     {
         return returnElement;

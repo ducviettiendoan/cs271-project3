@@ -81,3 +81,12 @@ int binaryToDec(vector<int> binarySeries){
     }
     return returnNum;
 }
+
+int findClosestPow2(int size){
+    int i = 0;
+    while (size >1){
+        size = size/2;
+        i ++;
+    }
+    return i;
+}

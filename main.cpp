@@ -4,6 +4,7 @@
 #include<string>
 #include <sstream> 
 #include <typeinfo>
+#include<string>
 #include "hashtable.cpp"
 using namespace std;
 
@@ -23,14 +24,17 @@ HashTable<T>createHashTableFromCSV(string csv){
 
 int main(){
 	HashTable<string>hashmap = createHashTableFromCSV<string>("logins.csv");
-	// hashmap.printHashMap();
-	long long password;
-	cout<<"Please enter a password to login: "<<endl;
-	cin>>password;
-	if (hashmap.searchItem(password)){
-		cout<<"You are logged in with username: "<<hashmap.searchItem(password)->get_value()<<endl;
-	}
-	else{
-		cout<<"User does not exist! Please check your password again."<<endl;
-	}
+	hashmap.printHashMap();
+	// long long password;
+	// string username;
+	// cout<<"Please enter a username to login: "<<endl;
+	// cin>>username;
+	// cout<<"Please enter a password to login: "<<endl;
+	// cin>>password;
+	// if (hashmap.searchItem(password) && username.compare(hashmap.searchItem(password)->get_value()) == 0){
+	// 	cout<<"You are logged in with username: "<<hashmap.searchItem(password)->get_value()<<endl;
+	// }
+	// else{
+	// 	cout<<"User does not exist! Please check your password or username again."<<endl;
+	// }
 }
