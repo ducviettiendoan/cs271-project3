@@ -2,6 +2,7 @@
 #include<string>
 using namespace std;
 
+//class Element also an object of the hashtable
 template<typename T>
 class Element{
     private: 
@@ -12,7 +13,7 @@ class Element{
         Element<T>* next;
         Element<T>* prev;
         Element(long long, T);  //change to int later plxx
-        //create Destructor!!!
+        //Destructor
         ~Element();
         long long get_key();
         T get_value();

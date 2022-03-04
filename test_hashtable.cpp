@@ -12,15 +12,19 @@ int main(){
     Element<double>* e6 = new Element<double>(11,99.2);
     //create HashTable size 6
     HashTable<double> hashmapTest = HashTable<double>(12);
+    //insert Element object to hashtable
     hashmapTest.insertItem(e1);
     hashmapTest.insertItem(e2);
     hashmapTest.insertItem(e3);
     hashmapTest.insertItem(e4);
     hashmapTest.insertItem(e5);
     hashmapTest.insertItem(e6);
+    //print hashmap after creating the table
     hashmapTest.printHashMap();
-    // cout<<hashmapTest.searchItem(7)<<endl;
-    // hashmapTest.deleteItem(e4);
-    // hashmapTest.printHashMap();
+    //search for an Element object in the hashtable and return the value of the corresponding key
+    cout<<hashmapTest.searchItem(7)->get_value()<<endl;
+    //delete an object
+    hashmapTest.deleteItem(e6);
+    hashmapTest.printHashMap();
     return 0;
 }

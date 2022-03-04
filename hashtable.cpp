@@ -90,15 +90,21 @@ void DoublyLinkedList<T>::deleteElement(Element<T> *target)
     {
         if (curr == target)
         {
-            if (curr == head)
+            if(head == tail){
+                head = nullptr;
+                tail = nullptr;
+                break;
+            }
+            else if (curr == head)
             {
                 (curr->next)->prev = nullptr;
                 head = curr->next;
+                
             }
             else if (tail == target)
             {
                 (curr->prev)->next = nullptr;
-                curr->prev = tail;
+                tail = curr -> prev;
             }
             else
             {
